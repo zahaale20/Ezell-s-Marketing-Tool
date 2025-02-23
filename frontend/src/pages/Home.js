@@ -25,7 +25,7 @@ const Home = () => {
   const [loadingUsage, setLoadingUsage] = useState(false);
   
   // Fetch usage per section
-  const fetchUsageStats = async (section, startTime) => {
+  const fetchUsageStats = async (section) => {
     try {
       const response = await fetch(`http://localhost:8000/get_api_usage?section=${section}`, {
         method: "GET",
@@ -35,19 +35,32 @@ const Home = () => {
       if (!response.ok) throw new Error(`Failed to fetch API usage for ${section}`);
   
       const data = await response.json();
-      const endTime = new Date().getTime();
-      const runtime = (endTime - startTime) / 1000; // Convert to seconds
   
-      if (section === "key_ideas") setUsageKeyIdeas({ ...data, runtime });
-      if (section === "texts") setUsagePosts({ ...data, runtime });
-      if (section === "images") setUsageImages({ ...data, runtime });
-  
+      // Use the server's runtime value directly
+      if (section === "key_ideas") {
+        setUsageKeyIdeas({
+          tokens: data.tokens,
+          cost: data.cost,
+          runtime: data.runtime,
+        });
+      } else if (section === "texts") {
+        setUsagePosts({
+          tokens: data.tokens,
+          cost: data.cost,
+          runtime: data.runtime,
+        });
+      } else if (section === "images") {
+        setUsageImages({
+          tokens: data.tokens,
+          cost: data.cost,
+          runtime: data.runtime,
+        });
+      }
     } catch (error) {
       console.error(`Error fetching usage stats for ${section}:`, error);
       alert(`Something went wrong fetching API usage for ${section}.`);
     }
-  };
-  
+  };  
 
   // Save API key when updated
   useEffect(() => {

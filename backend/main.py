@@ -108,10 +108,8 @@ async def extract_key_ideas(request: StoryRequest, authorization: str = Header(N
         raw_content = response.choices[0].message.content.strip()
         key_ideas = json.loads(raw_content)
 
-        # ✅ Check if usage data exists before accessing it
         tokens_used = getattr(response.usage, "total_tokens", 0)
-        estimated_cost = tokens_used * 0.000015  # Example cost calculation
-
+        estimated_cost = tokens_used * 0.000015
         runtime = round(time.time() - start_time, 2)
 
         update_api_usage("key_ideas", tokens_used, estimated_cost, runtime)
@@ -186,7 +184,6 @@ async def generate_texts(request: PostRequest, authorization: str = Header(None)
             temperature=0.6,
         )
 
-
         if not response.choices:
             raise ValueError("No response from OpenAI API")
 
@@ -194,8 +191,7 @@ async def generate_texts(request: PostRequest, authorization: str = Header(None)
         posts = json.loads(raw_content)
 
         tokens_used = response.usage.total_tokens
-        estimated_cost = tokens_used * 0.000015  # Adjust to your cost model
-
+        estimated_cost = tokens_used * 0.000015
         runtime = round(time.time() - start_time, 2)
         update_api_usage("texts", tokens_used, estimated_cost, runtime)
 
@@ -214,7 +210,7 @@ async def generate_images(request: ImageRequest, authorization: str = Header(Non
     if not api_key:
         raise HTTPException(status_code=401, detail="API key required")
 
-    client = get_openai_client(api_key)  #  Initialize OpenAI client
+    client = get_openai_client(api_key)
 
     if not request.key_ideas or not request.post_text:
         raise HTTPException(status_code=400, detail="Key idea and post text are required.")

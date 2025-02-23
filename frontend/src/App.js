@@ -7,13 +7,13 @@ import Home from "./pages/Home";
 
 // 🔥 Styled component for a fixed background
 const BackgroundContainer = styled.div`
-  position: fixed; /* Ensures background stays in place */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #ff9800; /* Orange background */
-  z-index: -1; /* Places it behind all content */
+  background: #ff9800;
+  z-index: -1;
 `;
 
 function App() {
