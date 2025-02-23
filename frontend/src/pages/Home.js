@@ -166,11 +166,6 @@ const Home = () => {
       <div className="landing-box">
         <div className="text-section">
 
-          <div className="feature-placeholder">
-            <h2>🔍 Integrate OpenAI Search to Find Relevant Facts</h2>
-            <p>This feature is not developed yet. The system will automatically search for verified facts to enhance social media posts.</p>
-          </div>
-
           <h1 className="output-title">Transform Your Story into Social Media Posts</h1>
 
           {/* API Key Input Section */}
@@ -202,7 +197,7 @@ const Home = () => {
 
           {/* Key Ideas Section */}
           <div className="post-output">
-            <h2 className="output-title">Key Ideas</h2>
+            <h2 className="output-title">Extracted Key Ideas</h2>
 
             <div className="table-container">
               <table className="post-table">
