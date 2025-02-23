@@ -1,0 +1,312 @@
+/* General Layout */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Ensure it takes the full height */
+  width: 100%;
+  overflow-y: auto; /* Enables scrolling */
+  padding: 20px;
+}
+
+
+.landing-box {
+  width: 80%;
+  background: rgb(255, 255, 255);
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Section Styling */
+.text-section,
+.key-ideas-section,
+.post-output,
+.image-generation {
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-section {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Titles & Descriptions */
+.output-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Input Fields */
+.story-input,
+.key-idea-input,
+.post-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: white;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+}
+
+.story-input {
+  height: 200px;
+  resize: vertical;
+}
+
+.key-idea-input {
+  text-align: center;
+}
+
+.story-input:focus,
+.key-idea-input:focus,
+.post-input:focus {
+  border-color: #ff9800;
+  box-shadow: 0px 0px 10px rgba(255, 152, 0, 0.4);
+  outline: none;
+}
+
+/* Buttons - Unified Styling */
+.submit-button {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+  text-align: center;
+  width: auto; /* Prevents full width */
+  min-width: 200px; /* Ensures consistent button size */
+  margin-bottom: 20px; /* Provides spacing below each button */
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  transform: scale(1.05);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tables */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.post-table,
+.image-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Consistent column width */
+.post-table th,
+.post-table td,
+.image-table th,
+.image-table td {
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: top;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.post-table th,
+.image-table th {
+  background-color: #ff5722;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+}
+
+/* Alternating Row Colors */
+.post-table tr:nth-child(even) td,
+.image-table tr:nth-child(even) td {
+  background: #f9f9f9;
+}
+
+/* Hover Effect for Table Rows */
+.post-table tbody tr:hover,
+.image-table tbody tr:hover {
+  background-color: rgba(255, 152, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Ensure tables align properly */
+.image-table td {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Ensure images fill their cells */
+.generated-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Ensure spacing between button and image table */
+.image-generation .submit-button {
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landing-box {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .story-input,
+  .key-idea-input,
+  .post-input {
+    width: 100%;
+  }
+
+  .submit-button {
+    width: 100%; /* Allows full width on mobile for usability */
+  }
+
+  .platform-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .generated-image {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Spinner Image */
+.spinner-img {
+  width: auto;
+  max-height: 20px;
+  vertical-align: middle;
+}
+
+/* Rotation Animation */
+.rotate {
+  animation: spin 1s linear infinite;
+}
+
+/* Large Spinner for Image Containers */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.spinner-container .spinner-img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Rotation Keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Key Idea Row */
+.key-idea-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Feature Placeholder - Light Gray Section */
+.feature-placeholder {
+  width: 80%;
+  background: #ececec; /* Light gray background */
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 20px;
+  border: 2px dashed #999; /* Dashed border to indicate work-in-progress */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title inside the placeholder */
+.feature-placeholder h2 {
+  color: #333333;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+/* Description text */
+.feature-placeholder p {
+  font-size: 1rem;
+  color: #333333;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.api-key-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ff9800;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #000000;  /* Change text color to black */
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 2px 6px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.api-key-input::placeholder {
+  color: #888888; /* Makes placeholder text gray for visibility */
+}
