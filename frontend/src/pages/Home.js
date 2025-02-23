@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import spinnerImage from "../assets/eggs.png";
+import sunny from "../assets/sunny.png";
+import friedChicken from "../assets/fried-chicken.png";
+import bun from "../assets/bun.png";
+import love from "../assets/love.png";
 import "./Home.css";
 
 const Home = () => {
@@ -38,6 +41,8 @@ const Home = () => {
       return;
     }
 
+    setLoadingIdeas(true)
+
     try {
       const response = await fetch("http://localhost:8000/extract_key_ideas", {
         method: "POST",
@@ -54,6 +59,8 @@ const Home = () => {
     } catch (error) {
       console.error("Error extracting ideas:", error);
       alert("Something went wrong extracting key ideas.");
+    } finally {
+      setLoadingIdeas(false)
     }
   };
 
@@ -120,7 +127,10 @@ const Home = () => {
         try {
           const response = await fetch("http://localhost:8000/generate_images", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${apiKey}`  // ✅ Ensure API key is sent
+            },
             body: JSON.stringify({ key_idea: keyIdea, platform, post_text: postText }),
           });
   
@@ -147,6 +157,7 @@ const Home = () => {
     setLoadingImages(false);
   };
   
+  
 
   const minimumFields = 3;
 
@@ -172,7 +183,7 @@ const Home = () => {
               onChange={(e) => setApiKey(e.target.value)}
             />
             {apiKey && (
-              <button className="clear-button" onClick={clearApiKey}>Clear Key</button>
+              <button className="submit-button" onClick={clearApiKey}>Clear Key</button>
             )}
           </div>
 
@@ -185,7 +196,7 @@ const Home = () => {
               onChange={(e) => setStory(e.target.value)}
             />
             <button className="submit-button" onClick={handleExtractIdeas} disabled={loadingIdeas}>
-              {loadingIdeas ? <img src={spinnerImage} alt="Loading" className="spinner-img rotate" /> : "Extract Key Ideas"}
+              {loadingIdeas ? <img src={sunny} alt="Loading" className="spinner-img rotate" /> : "Extract Key Ideas"}
             </button>
           </div>
 
@@ -211,7 +222,7 @@ const Home = () => {
             </div>
 
             <button className="submit-button" onClick={handleGenerateTexts} disabled={loadingPosts}>
-              {loadingPosts ? <img src={spinnerImage} alt="Loading" className="spinner-img rotate" /> : "Generate Texts"}
+              {loadingPosts ? <img src={friedChicken} alt="Loading" className="spinner-img rotate" /> : "Generate Texts"}
             </button>
           </div>
 
@@ -242,7 +253,7 @@ const Home = () => {
               </table>
             </div>
             <button className="submit-button" onClick={handleGenerateImages} disabled={loadingImages}>
-              {loadingImages ? <img src={spinnerImage} alt="Loading" className="spinner-img rotate" /> : "Generate Images"}
+              {loadingImages ? <img src={bun} alt="Loading" className="spinner-img rotate" /> : "Generate Images"}
             </button>
           </div>
 
@@ -268,7 +279,7 @@ const Home = () => {
                         return (
                           <td key={platform}>
                             {imagesLoading[imageKey] ? (
-                              <img src={spinnerImage} alt="Loading" className="spinner-img rotate" />
+                              <img src={love} alt="Loading" className="spinner-img rotate" />
                             ) : (
                               images[imageKey] ? (
                                 <img src={images[imageKey]} alt={`${platform} visualization`} className="generated-image" />
