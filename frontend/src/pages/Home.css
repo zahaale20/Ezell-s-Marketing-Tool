@@ -6,33 +6,47 @@
   min-height: 100vh; /* Ensure it takes the full height */
   width: 100%;
   overflow-y: auto; /* Enables scrolling */
-  padding: 20px;
 }
 
 
 .landing-box {
-  width: 80%;
-  background: rgb(255, 255, 255);
-  border-radius: 15px;
-  padding: 25px;
+  width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
 }
 
 /* Section Styling */
-.text-section,
+.heading-api,
+.input-section,
 .key-ideas-section,
 .post-output,
 .image-generation {
-  width: 80%;
-  padding: 20px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+.text-section,
+.heading-api,
+.input-section,
+.key-ideas-section,
+.post-output,
+.image-generation {
+  width: 1200px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
   align-items: center;
   justify-content: center;
+}
+
+.text-section{
+  gap: 20px;
 }
 
 .input-section {
@@ -46,11 +60,22 @@
 
 /* Titles & Descriptions */
 .output-title {
-  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   color: #333;
   margin-bottom: 10px;
+}
+
+.post-output h1{
+  font-size: 2.5rem;
+}
+
+.output-title h2{
+  font-size: 1.5rem;
+}
+
+.highlight {
+  color: #ff5722;
 }
 
 /* Input Fields */
@@ -273,7 +298,6 @@
   font-size: 1.1rem;
   font-weight: bold;
   color: #555;
-  margin-bottom: 20px;
   border: 2px dashed #999; /* Dashed border to indicate work-in-progress */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -309,4 +333,64 @@
 
 .api-key-input::placeholder {
   color: #888888; /* Makes placeholder text gray for visibility */
+}
+
+/* Container that holds all usage cards in a row */
+.usage-stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Make them the same height if you like */
+  gap: 20px; /* Spacing between cards */
+  flex-wrap: wrap; /* If there's not enough width, they wrap to a new line */
+  margin-top: 20px;
+}
+
+/* Each individual usage card */
+.usage-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 220px; /* Adjust as needed */
+  display: flex;
+  flex-direction: row; /* icon + text side by side */
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+  cursor: default; /* Or pointer if clickable */
+}
+
+.usage-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Icon on the left side */
+.usage-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  object-fit: contain; /* or 'cover' if you want to fill */
+}
+
+/* The textual info about the stat */
+.usage-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Label is something like "Tokens" or "Cost" */
+.usage-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Value is the actual number, bigger and bolder */
+.usage-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }

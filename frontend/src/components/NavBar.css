@@ -1,15 +1,27 @@
 .navbar {
     position: fixed;
-    top: 0px;
-    left: 0;
-    width: 100%;
+    top: 0;
+    /* Center horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Match the .landing-box approach */
+    width: 1200px;
+    padding: 0px 20px;
+    height: 100px;
     z-index: 1000;
+    margin: 0;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100px;
-    flex-direction: column;
-    background: rgba(255, 255, 255);
+
+    background-color: #fff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 
